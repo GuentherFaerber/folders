@@ -1,7 +1,7 @@
 {
     "_version": "1.12.0",
     "sap.app": {
-        "id": "environments",
+        "id": "directories",
         "type": "application",
         "i18n": "i18n/i18n.properties",
         "applicationVersion": {
@@ -70,7 +70,7 @@
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
-                    "bundleName": "environments.i18n.i18n"
+                    "bundleName": "directories.i18n.i18n"
                 }
             },
             "": {
@@ -96,28 +96,28 @@
             "routes": [
                 {
                     "pattern": ":?query:",
-                    "name": "EnvironmentsList",
-                    "target": "EnvironmentsList"
+                    "name": "DirectoriesList",
+                    "target": "DirectoriesList"
                 },
                 {
-                    "pattern": "Environments({key}):?query:",
-                    "name": "EnvironmentsObjectPage",
-                    "target": "EnvironmentsObjectPage"
+                    "pattern": "Directories({key}):?query:",
+                    "name": "DirectoriesObjectPage",
+                    "target": "DirectoriesObjectPage"
                 }
             ],
             "targets": {
-                "EnvironmentsList": {
+                "DirectoriesList": {
                     "type": "Component",
-                    "id": "EnvironmentsList",
+                    "id": "DirectoriesList",
                     "name": "sap.fe.templates.ListReport",
                     "options": {
                         "settings": {
-                            "entitySet": "Environments",
+                            "entitySet": "Directories",
                             "variantManagement": "Page",
                             "navigation": {
-                                "Environments": {
+                                "Directories": {
                                     "detail": {
-                                        "route": "EnvironmentsObjectPage"
+                                        "route": "DirectoriesObjectPage"
                                     }
                                 }
                             },
@@ -125,14 +125,14 @@
                         }
                     }
                 },
-                "EnvironmentsObjectPage": {
+                "DirectoriesObjectPage": {
                     "type": "Component",
-                    "id": "EnvironmentsObjectPage",
+                    "id": "DirectoriesObjectPage",
                     "name": "sap.fe.templates.ObjectPage",
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "Environments"
+                            "entitySet": "Directories"
                         }
                     }
                 }

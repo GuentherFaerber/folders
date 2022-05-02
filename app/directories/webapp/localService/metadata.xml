@@ -9,15 +9,18 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
         <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
     </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
     <edmx:DataServices>
         <Schema Namespace="Service" xmlns="http://docs.oasis-open.org/odata/ns/edm">
             <EntityContainer Name="EntityContainer">
-                <EntitySet Name="Environments" EntityType="Service.Environments">
-                    <NavigationPropertyBinding Path="_parentId" Target="Environments"/>
-                    <NavigationPropertyBinding Path="SiblingEntity" Target="Environments"/>
+                <EntitySet Name="Directories" EntityType="Service.Directories">
+                    <NavigationPropertyBinding Path="_parentId" Target="Directories"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Directories"/>
                 </EntitySet>
             </EntityContainer>
-            <EntityType Name="Environments">
+            <EntityType Name="Directories">
                 <Key>
                     <PropertyRef Name="Id"/>
                     <PropertyRef Name="IsActiveEntity"/>
@@ -25,15 +28,16 @@
                 <Property Name="Id" Type="Edm.String" Nullable="false"/>
                 <Property Name="parentId" Type="Edm.String"/>
                 <Property Name="sequence" Type="Edm.Int32"/>
+                <Property Name="type" Type="Edm.String"/>
                 <Property Name="description" Type="Edm.String"/>
-                <NavigationProperty Name="_parentId" Type="Service.Environments">
+                <NavigationProperty Name="_parentId" Type="Service.Directories">
                     <ReferentialConstraint Property="parentId" ReferencedProperty="Id"/>
                 </NavigationProperty>
                 <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
                 <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
                 <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
                 <NavigationProperty Name="DraftAdministrativeData" Type="Service.DraftAdministrativeData" ContainsTarget="true"/>
-                <NavigationProperty Name="SiblingEntity" Type="Service.Environments"/>
+                <NavigationProperty Name="SiblingEntity" Type="Service.Directories"/>
             </EntityType>
             <EntityType Name="DraftAdministrativeData">
                 <Key>
@@ -49,20 +53,20 @@
                 <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
             </EntityType>
             <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
-                <Parameter Name="in" Type="Service.Environments"/>
+                <Parameter Name="in" Type="Service.Directories"/>
                 <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
-                <ReturnType Type="Service.Environments"/>
+                <ReturnType Type="Service.Directories"/>
             </Action>
             <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
-                <Parameter Name="in" Type="Service.Environments"/>
-                <ReturnType Type="Service.Environments"/>
+                <Parameter Name="in" Type="Service.Directories"/>
+                <ReturnType Type="Service.Directories"/>
             </Action>
             <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
-                <Parameter Name="in" Type="Service.Environments"/>
+                <Parameter Name="in" Type="Service.Directories"/>
                 <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
-                <ReturnType Type="Service.Environments"/>
+                <ReturnType Type="Service.Directories"/>
             </Action>
-            <Annotations Target="Service.EntityContainer/Environments">
+            <Annotations Target="Service.EntityContainer/Directories">
                 <Annotation Term="Common.DraftRoot">
                     <Record Type="Common.DraftRootType">
                         <PropertyValue Property="ActivationAction" String="Service.draftActivate"/>
@@ -71,28 +75,43 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Service.Environments/Id">
+            <Annotations Target="Service.Directories/Id">
                 <Annotation Term="Common.Label" String="ID"/>
             </Annotations>
-            <Annotations Target="Service.Environments/parentId">
+            <Annotations Target="Service.Directories/parentId">
                 <Annotation Term="Common.Label" String="Parent ID"/>
             </Annotations>
-            <Annotations Target="Service.Environments/sequence">
+            <Annotations Target="Service.Directories/sequence">
                 <Annotation Term="Common.Label" String="Sequence"/>
             </Annotations>
-            <Annotations Target="Service.Environments/description">
+            <Annotations Target="Service.Directories/type">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Folder"/>
+                            <PropertyValue Property="Value" String="FOLDER"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Environment"/>
+                            <PropertyValue Property="Value" String="FILE"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Type"/>
+            </Annotations>
+            <Annotations Target="Service.Directories/description">
                 <Annotation Term="Common.Label" String="Description"/>
             </Annotations>
-            <Annotations Target="Service.Environments/IsActiveEntity">
+            <Annotations Target="Service.Directories/IsActiveEntity">
                 <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
-            <Annotations Target="Service.Environments/HasActiveEntity">
+            <Annotations Target="Service.Directories/HasActiveEntity">
                 <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
-            <Annotations Target="Service.Environments/HasDraftEntity">
+            <Annotations Target="Service.Directories/HasDraftEntity">
                 <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
-            <Annotations Target="Service.Environments/DraftAdministrativeData">
+            <Annotations Target="Service.Directories/DraftAdministrativeData">
                 <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
             <Annotations Target="Service.DraftAdministrativeData">

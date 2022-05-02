@@ -1,5 +1,5 @@
-using {Environments as environments} from '../db/schema';
+using {Directories as directories} from '../db/schema';
 
 service Service {
-    entity Environments as projection on environments order by sequence asc;
+    entity Directories as projection on directories order by sequence asc;
 }

@@ -1,31 +1,31 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon May 02 2022 10:01:14 GMT+0200 (Central European Summer Time)|
+|**Generation Date and Time**<br>Mon May 02 2022 10:35:02 GMT+0200 (Central European Summer Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.5.4|
 |**Generation Platform**<br>Visual Studio Code|
 |**Floorplan Used**<br>List Report Object Page V4|
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/
-|**Module Name**<br>environments|
-|**Application Title**<br>Edit Environments|
+|**Module Name**<br>directories|
+|**Application Title**<br>Browse Directories|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>1.100.2|
 |**Enable Code Assist Libraries**<br>True|
 |**Add Eslint configuration**<br>False|
-|**Main Entity**<br>Environments|
+|**Main Entity**<br>Directories|
 
-## environments
+## directories
 
-Edit Environments
+Browse Directories
 
 ### Starting the generated app
 
 -   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply start your CAP project and navigate to the following location in your browser:
 
-http://localhost:4004/environments/webapp/index.html
+http://localhost:4004/directories/webapp/index.html
 
 - It is also possible to run the application using mock data that reflects the OData Service URL supplied during application generation.  In order to run the application with Mock Data, run the following from the generated app root folder:
 

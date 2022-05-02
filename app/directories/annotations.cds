@@ -1,6 +1,6 @@
 using Service as service from '../../srv/service';
 
-annotate service.Environments with @(
+annotate service.Directories with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
@@ -18,9 +18,13 @@ annotate service.Environments with @(
             $Type : 'UI.DataField',
             Value : sequence,
         },
+        {
+            $Type : 'UI.DataField',
+            Value : type,
+        },
     ]
 );
-annotate service.Environments with @(
+annotate service.Directories with @(
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
         Data : [
@@ -38,6 +42,10 @@ annotate service.Environments with @(
             },
             {
                 $Type : 'UI.DataField',
+                Value : type,
+            },
+            {
+                $Type : 'UI.DataField',
                 Value : description,
             },
         ],
@@ -51,7 +59,7 @@ annotate service.Environments with @(
         },
     ]
 );
-annotate service.Environments with @(
+annotate service.Directories with @(
     UI.SelectionFields : [
         parentId,
     ]

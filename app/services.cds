@@ -1,2 +1,2 @@
 
-using from './environments/annotations';
+using from './directories/annotations';
