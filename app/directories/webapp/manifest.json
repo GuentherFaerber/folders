@@ -33,6 +33,21 @@
                     "localUri": "annotations/annotation.xml"
                 }
             }
+        },
+        "crossNavigation": {
+            "inbounds": {
+                "directories-inbound": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "NavDirectories",
+                    "action": "display",
+                    "title": "{{flpTitle}}",
+                    "subTitle": "{{flpSubtitle}}",
+                    "icon": ""
+                }
+            }
         }
     },
     "sap.ui": {
@@ -118,6 +133,20 @@
                                 "Directories": {
                                     "detail": {
                                         "route": "DirectoriesObjectPage"
+                                    }
+                                }
+                            },
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "condensedTableLayout": true,
+                                        "enableExport": true,
+                                        "selectAll": true,
+                                        "personalization": {
+                                            "column": true,
+                                            "filter": true,
+                                            "sort": true
+                                        }
                                     }
                                 }
                             },

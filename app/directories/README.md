@@ -1,7 +1,7 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Mon May 02 2022 10:35:02 GMT+0200 (Central European Summer Time)|
+|**Generation Date and Time**<br>Tue May 03 2022 09:40:13 GMT+0200 (Central European Summer Time)|
 |**App Generator**<br>@sap/generator-fiori-elements|
 |**App Generator Version**<br>1.5.4|
 |**Generation Platform**<br>Visual Studio Code|
@@ -9,17 +9,18 @@
 |**Service Type**<br>Local Cap|
 |**Service URL**<br>http://localhost:4004/
 |**Module Name**<br>directories|
-|**Application Title**<br>Browse Directories|
+|**Application Title**<br>Edit Directories|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_fiori_3|
 |**UI5 Version**<br>1.100.2|
-|**Enable Code Assist Libraries**<br>True|
+|**Enable Code Assist Libraries**<br>False|
 |**Add Eslint configuration**<br>False|
 |**Main Entity**<br>Directories|
+|**Navigation Entity**<br>None|
 
 ## directories
 
-Browse Directories
+Edit Directories
 
 ### Starting the generated app
 

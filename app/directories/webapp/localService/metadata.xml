@@ -16,7 +16,8 @@
         <Schema Namespace="Service" xmlns="http://docs.oasis-open.org/odata/ns/edm">
             <EntityContainer Name="EntityContainer">
                 <EntitySet Name="Directories" EntityType="Service.Directories">
-                    <NavigationPropertyBinding Path="_parentId" Target="Directories"/>
+                    <NavigationPropertyBinding Path="parent" Target="Directories"/>
+                    <NavigationPropertyBinding Path="Childs" Target="Directories"/>
                     <NavigationPropertyBinding Path="SiblingEntity" Target="Directories"/>
                 </EntitySet>
             </EntityContainer>
@@ -26,12 +27,15 @@
                     <PropertyRef Name="IsActiveEntity"/>
                 </Key>
                 <Property Name="Id" Type="Edm.String" Nullable="false"/>
-                <Property Name="parentId" Type="Edm.String"/>
+                <NavigationProperty Name="parent" Type="Service.Directories">
+                    <ReferentialConstraint Property="parent_Id" ReferencedProperty="Id"/>
+                </NavigationProperty>
+                <Property Name="parent_Id" Type="Edm.String"/>
                 <Property Name="sequence" Type="Edm.Int32"/>
                 <Property Name="type" Type="Edm.String"/>
                 <Property Name="description" Type="Edm.String"/>
-                <NavigationProperty Name="_parentId" Type="Service.Directories">
-                    <ReferentialConstraint Property="parentId" ReferencedProperty="Id"/>
+                <NavigationProperty Name="Childs" Type="Collection(Service.Directories)">
+                    <OnDelete Action="Cascade"/>
                 </NavigationProperty>
                 <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
                 <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
@@ -78,7 +82,10 @@
             <Annotations Target="Service.Directories/Id">
                 <Annotation Term="Common.Label" String="ID"/>
             </Annotations>
-            <Annotations Target="Service.Directories/parentId">
+            <Annotations Target="Service.Directories/parent">
+                <Annotation Term="Common.Label" String="Parent ID"/>
+            </Annotations>
+            <Annotations Target="Service.Directories/parent_Id">
                 <Annotation Term="Common.Label" String="Parent ID"/>
             </Annotations>
             <Annotations Target="Service.Directories/sequence">
@@ -92,7 +99,7 @@
                             <PropertyValue Property="Value" String="FOLDER"/>
                         </Record>
                         <Record Type="Validation.AllowedValue">
-                            <Annotation Term="Core.SymbolicName" String="Environment"/>
+                            <Annotation Term="Core.SymbolicName" String="File"/>
                             <PropertyValue Property="Value" String="FILE"/>
                         </Record>
                     </Collection>

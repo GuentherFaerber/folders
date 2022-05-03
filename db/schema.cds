@@ -5,11 +5,11 @@ type DirectoryType @(assert.range) : String @title : 'Type' enum {
 
 @odata.draft.enabled
 entity Directories {
-    key Id          : String  @title : 'ID';
-        parentId    : String  @title : 'Parent ID';
-        sequence    : Integer @title : 'Sequence';
+    key Id          : String                         @title : 'ID';
+        parent      : Association to one Directories @title : 'Parent ID';
+        sequence    : Integer                        @title : 'Sequence';
         type        : DirectoryType;
-        description : String  @title : 'Description';
-        _parentId   : Association to one Directories
-                          on _parentId.Id = parentId;
+        description : String                         @title : 'Description';
+        Childs      : Association to many Directories
+                          on parent = $self;
 }
