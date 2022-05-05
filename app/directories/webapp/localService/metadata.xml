@@ -34,9 +34,7 @@
                 <Property Name="sequence" Type="Edm.Int32"/>
                 <Property Name="type" Type="Edm.String"/>
                 <Property Name="description" Type="Edm.String"/>
-                <NavigationProperty Name="Childs" Type="Collection(Service.Directories)">
-                    <OnDelete Action="Cascade"/>
-                </NavigationProperty>
+                <NavigationProperty Name="Childs" Type="Collection(Service.Directories)"/>
                 <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
                 <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
                 <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>

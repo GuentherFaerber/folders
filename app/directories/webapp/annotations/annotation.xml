@@ -8,7 +8,7 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
         <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
     </edmx:Reference>
-    <edmx:Reference Uri="/$metadata">
+    <edmx:Reference Uri="/service/directories/$metadata">
         <edmx:Include Namespace="Service"/>
     </edmx:Reference>
     <edmx:DataServices>

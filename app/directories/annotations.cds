@@ -8,14 +8,11 @@ annotate service.Directories with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : description,
+            Value : parent_Id,
         },
         {
-            $Type: 'UI.DataFieldWithIntentBasedNavigation',
-            Value : parent_Id,
-            SemanticObject: 'NavDirectories',
-            Action: 'display',
-            Label : 'Browse Childs',
+            $Type : 'UI.DataField',
+            Value : sequence,
         },
         {
             $Type : 'UI.DataField',
@@ -23,7 +20,47 @@ annotate service.Directories with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : sequence,
+            Value : description,
         },
+    ]
+);
+annotate service.Directories with @(
+    UI.FieldGroup #GeneratedGroup1 : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : Id,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : parent_Id,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : sequence,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : type,
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : description,
+            },
+        ],
+    },
+    UI.Facets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'GeneratedFacet1',
+            Label : 'General Information',
+            Target : '@UI.FieldGroup#GeneratedGroup1',
+        },
+    ]
+);
+annotate service.Directories with @(
+    UI.SelectionFields : [
+        parent_Id,
     ]
 );

@@ -1,0 +1,15 @@
+POST http://localhost:4004/service/directories/Directories
+Content-Type: application/json
+
+{
+    "Id": "FILE4",
+    "parent_Id": "FOLDER2",
+    "sequence": 10,
+    "type": "FILE",
+    "description": "My File 3",
+    "IsActiveEntity": true
+}
+###
+GET http://localhost:4004/service/directories/Directories?$filter=IsActiveEntity eq false
+###
+GET http://localhost:4004/service/directories/Directories?$filter=IsActiveEntity eq true

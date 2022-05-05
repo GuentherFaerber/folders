@@ -16,7 +16,7 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/",
+                "uri": "/service/directories/",
                 "type": "OData",
                 "settings": {
                     "annotations": [
@@ -41,7 +41,7 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "NavDirectories",
+                    "semanticObject": "SOdirectories",
                     "action": "display",
                     "title": "{{flpTitle}}",
                     "subTitle": "{{flpSubtitle}}",
@@ -138,10 +138,19 @@
                             },
                             "controlConfiguration": {
                                 "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "columns": {
+                                        "Childs": {
+                                            "header": "Browse Childs",
+                                            "position": {
+                                                "anchor": "DataField::parent_Id",
+                                                "placement": "After"
+                                            },
+                                            "template": "directories.ext.fragment.Childs"
+                                        }
+                                    },
                                     "tableSettings": {
                                         "condensedTableLayout": true,
                                         "enableExport": true,
-                                        "selectAll": true,
                                         "personalization": {
                                             "column": true,
                                             "filter": true,
