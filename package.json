@@ -11,14 +11,18 @@
   },
   "devDependencies": {
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
-    "@sap/ux-specification": "^1.100.1",
+    "@sap/ux-specification": "^1.100.2",
     "@sapui5/ts-types": "^1.92.2",
     "eslint": "^7.32.0",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
     "start": "cds run",
-    "watch-directories": "cds watch --open directories/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4"
+    "watch-directories": "cds watch --open directories/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4",
+    "watch-functions": "cds watch --open functions/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4",
+    "watch-allocation": "cds watch --open allocation/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4",
+    "watch-derivation": "cds watch --open derivation/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4",
+    "watch-modeltable": "cds watch --open modeltable/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4"
   },
   "eslintConfig": {
     "extends": "eslint:recommended",
@@ -46,6 +50,10 @@
     }
   },
   "sapux": [
-    "app/directories"
+    "app/directories",
+    "app/functions",
+    "app/allocation",
+    "app/derivation",
+    "app/modeltable"
   ]
 }

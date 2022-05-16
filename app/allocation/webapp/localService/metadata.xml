@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="FunctionService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Functions" EntityType="FunctionService.Functions">
+                    <NavigationPropertyBinding Path="allocation" Target="Allocations"/>
+                    <NavigationPropertyBinding Path="derivation" Target="Derivations"/>
+                    <NavigationPropertyBinding Path="modelTable" Target="ModelTables"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Functions"/>
+                </EntitySet>
+                <EntitySet Name="Allocations" EntityType="FunctionService.Allocations">
+                    <NavigationPropertyBinding Path="function" Target="Functions"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Allocations"/>
+                </EntitySet>
+                <EntitySet Name="Derivations" EntityType="FunctionService.Derivations">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Derivations"/>
+                </EntitySet>
+                <EntitySet Name="ModelTables" EntityType="FunctionService.ModelTables">
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="ModelTables"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Functions">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="directory_ID" Type="Edm.String"/>
+                <NavigationProperty Name="allocation" Type="FunctionService.Allocations">
+                    <ReferentialConstraint Property="allocation_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="allocation_ID" Type="Edm.String"/>
+                <NavigationProperty Name="derivation" Type="FunctionService.Derivations">
+                    <ReferentialConstraint Property="derivation_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="derivation_ID" Type="Edm.String"/>
+                <NavigationProperty Name="modelTable" Type="FunctionService.ModelTables">
+                    <ReferentialConstraint Property="modelTable_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="modelTable_ID" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="FunctionService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="FunctionService.Functions"/>
+            </EntityType>
+            <EntityType Name="Allocations">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <NavigationProperty Name="function" Type="FunctionService.Functions">
+                    <ReferentialConstraint Property="function_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="function_ID" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="FunctionService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="FunctionService.Allocations"/>
+            </EntityType>
+            <EntityType Name="Derivations">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="FunctionService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="FunctionService.Derivations"/>
+            </EntityType>
+            <EntityType Name="ModelTables">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="FunctionService.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="FunctionService.ModelTables"/>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Functions"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="FunctionService.Functions"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Allocations"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="FunctionService.Allocations"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Derivations"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="FunctionService.Derivations"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.ModelTables"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="FunctionService.ModelTables"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Functions"/>
+                <ReturnType Type="FunctionService.Functions"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Allocations"/>
+                <ReturnType Type="FunctionService.Allocations"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Derivations"/>
+                <ReturnType Type="FunctionService.Derivations"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.ModelTables"/>
+                <ReturnType Type="FunctionService.ModelTables"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Functions"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="FunctionService.Functions"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Allocations"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="FunctionService.Allocations"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.Derivations"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="FunctionService.Derivations"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="FunctionService.ModelTables"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="FunctionService.ModelTables"/>
+            </Action>
+            <Annotations Target="FunctionService.EntityContainer/Functions">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="FunctionService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="FunctionService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="FunctionService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="FunctionService.Functions/ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Functions/type">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Allocation"/>
+                            <PropertyValue Property="Value" String="AL"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Derivation"/>
+                            <PropertyValue Property="Value" String="DE"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="ModelTable"/>
+                            <PropertyValue Property="Value" String="MT"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Type"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Functions/description">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Functions/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Functions/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Functions/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Functions/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.EntityContainer/Allocations">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="FunctionService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="FunctionService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="FunctionService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/type">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Direct"/>
+                            <PropertyValue Property="Value" String="DI"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Indirect"/>
+                            <PropertyValue Property="Value" String="IN"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Type"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/description">
+                <Annotation Term="Common.Label" String="Description"/>
+                <Annotation Term="Validation.Pattern" String="[A-Z,0-9,_]{3}"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/function">
+                <Annotation Term="Common.Label" String="Function"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/function_ID">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Label" String="Function"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Allocations/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.EntityContainer/Derivations">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="FunctionService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="FunctionService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="FunctionService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="FunctionService.Derivations/ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Derivations/type">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Derivation"/>
+                            <PropertyValue Property="Value" String="DE"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="TransferStructure"/>
+                            <PropertyValue Property="Value" String="TR"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Type"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Derivations/description">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Derivations/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Derivations/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Derivations/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.Derivations/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.EntityContainer/ModelTables">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="FunctionService.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="FunctionService.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="FunctionService.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="FunctionService.ModelTables/ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.ModelTables/type">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Internal"/>
+                            <PropertyValue Property="Value" String="IN"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="External"/>
+                            <PropertyValue Property="Value" String="EX"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Type"/>
+            </Annotations>
+            <Annotations Target="FunctionService.ModelTables/description">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="FunctionService.ModelTables/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.ModelTables/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.ModelTables/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.ModelTables/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="FunctionService.DraftAdministrativeData">
+                <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                </Annotations>
+                <Annotations Target="FunctionService.DraftAdministrativeData/DraftUUID">
+                    <Annotation Term="UI.Hidden" Bool="true"/>
+                    <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                    </Annotations>
+                    <Annotations Target="FunctionService.DraftAdministrativeData/CreationDateTime">
+                        <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                        </Annotations>
+                        <Annotations Target="FunctionService.DraftAdministrativeData/CreatedByUser">
+                            <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                            </Annotations>
+                            <Annotations Target="FunctionService.DraftAdministrativeData/DraftIsCreatedByMe">
+                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                </Annotations>
+                                <Annotations Target="FunctionService.DraftAdministrativeData/LastChangeDateTime">
+                                    <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                    </Annotations>
+                                    <Annotations Target="FunctionService.DraftAdministrativeData/LastChangedByUser">
+                                        <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                        </Annotations>
+                                        <Annotations Target="FunctionService.DraftAdministrativeData/InProcessByUser">
+                                            <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                            </Annotations>
+                                            <Annotations Target="FunctionService.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                <Annotation Term="UI.Hidden" Bool="true"/>
+                                                <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                </Annotations>
+                                            </Schema>
+                                        </edmx:DataServices>
+                                    </edmx:Edmx>

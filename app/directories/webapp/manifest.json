@@ -41,8 +41,8 @@
                         "parameters": {},
                         "additionalParameters": "allowed"
                     },
-                    "semanticObject": "SOdirectories",
-                    "action": "display",
+                    "semanticObject": "directories",
+                    "action": "manage",
                     "title": "{{flpTitle}}",
                     "subTitle": "{{flpSubtitle}}",
                     "icon": ""
@@ -69,7 +69,7 @@
     "sap.ui5": {
         "flexEnabled": true,
         "dependencies": {
-            "minUI5Version": "1.100.2",
+            "minUI5Version": "1.101.0",
             "libs": {
                 "sap.m": {},
                 "sap.ui.core": {},
@@ -118,6 +118,11 @@
                     "pattern": "Directories({key}):?query:",
                     "name": "DirectoriesObjectPage",
                     "target": "DirectoriesObjectPage"
+                },
+                {
+                    "pattern": "Directories({key})/functions({key2}):?query:",
+                    "name": "FunctionsObjectPage",
+                    "target": "FunctionsObjectPage"
                 }
             ],
             "targets": {
@@ -136,29 +141,6 @@
                                     }
                                 }
                             },
-                            "controlConfiguration": {
-                                "@com.sap.vocabularies.UI.v1.LineItem": {
-                                    "columns": {
-                                        "Childs": {
-                                            "header": "Browse Childs",
-                                            "position": {
-                                                "anchor": "DataField::parent_Id",
-                                                "placement": "After"
-                                            },
-                                            "template": "directories.ext.fragment.Childs"
-                                        }
-                                    },
-                                    "tableSettings": {
-                                        "condensedTableLayout": true,
-                                        "enableExport": true,
-                                        "personalization": {
-                                            "column": true,
-                                            "filter": true,
-                                            "sort": true
-                                        }
-                                    }
-                                }
-                            },
                             "initialLoad": "Enabled"
                         }
                     }
@@ -170,7 +152,25 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "Directories"
+                            "entitySet": "Directories",
+                            "navigation": {
+                                "functions": {
+                                    "detail": {
+                                        "route": "FunctionsObjectPage"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "FunctionsObjectPage": {
+                    "type": "Component",
+                    "id": "FunctionsObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "editableHeaderContent": false,
+                            "entitySet": "Functions"
                         }
                     }
                 }

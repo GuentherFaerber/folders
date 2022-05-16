@@ -17,29 +17,59 @@
             <EntityContainer Name="EntityContainer">
                 <EntitySet Name="Directories" EntityType="Service.Directories">
                     <NavigationPropertyBinding Path="parent" Target="Directories"/>
-                    <NavigationPropertyBinding Path="Childs" Target="Directories"/>
+                    <NavigationPropertyBinding Path="childs" Target="Directories"/>
+                    <NavigationPropertyBinding Path="functions" Target="Functions"/>
                     <NavigationPropertyBinding Path="SiblingEntity" Target="Directories"/>
+                </EntitySet>
+                <EntitySet Name="Functions" EntityType="Service.Functions">
+                    <NavigationPropertyBinding Path="directory" Target="Directories"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Functions"/>
                 </EntitySet>
             </EntityContainer>
             <EntityType Name="Directories">
                 <Key>
-                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="ID"/>
                     <PropertyRef Name="IsActiveEntity"/>
                 </Key>
-                <Property Name="Id" Type="Edm.String" Nullable="false"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
                 <NavigationProperty Name="parent" Type="Service.Directories">
-                    <ReferentialConstraint Property="parent_Id" ReferencedProperty="Id"/>
+                    <ReferentialConstraint Property="parent_ID" ReferencedProperty="ID"/>
                 </NavigationProperty>
-                <Property Name="parent_Id" Type="Edm.String"/>
+                <Property Name="parent_ID" Type="Edm.String"/>
                 <Property Name="sequence" Type="Edm.Int32"/>
                 <Property Name="type" Type="Edm.String"/>
                 <Property Name="description" Type="Edm.String"/>
-                <NavigationProperty Name="Childs" Type="Collection(Service.Directories)"/>
+                <NavigationProperty Name="childs" Type="Collection(Service.Directories)"/>
+                <NavigationProperty Name="functions" Type="Collection(Service.Functions)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <Property Name="functions_ID" Type="Edm.String"/>
                 <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
                 <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
                 <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
                 <NavigationProperty Name="DraftAdministrativeData" Type="Service.DraftAdministrativeData" ContainsTarget="true"/>
                 <NavigationProperty Name="SiblingEntity" Type="Service.Directories"/>
+            </EntityType>
+            <EntityType Name="Functions">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false"/>
+                <Property Name="type" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <NavigationProperty Name="directory" Type="Service.Directories">
+                    <ReferentialConstraint Property="directory_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="directory_ID" Type="Edm.String"/>
+                <Property Name="allocation_ID" Type="Edm.String"/>
+                <Property Name="derivation_ID" Type="Edm.String"/>
+                <Property Name="modelTable_ID" Type="Edm.String"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="Service.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="Service.Functions"/>
             </EntityType>
             <EntityType Name="DraftAdministrativeData">
                 <Key>
@@ -59,6 +89,11 @@
                 <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
                 <ReturnType Type="Service.Directories"/>
             </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="Service.Functions"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="Service.Functions"/>
+            </Action>
             <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
                 <Parameter Name="in" Type="Service.Directories"/>
                 <ReturnType Type="Service.Directories"/>
@@ -77,13 +112,13 @@
                     </Record>
                 </Annotation>
             </Annotations>
-            <Annotations Target="Service.Directories/Id">
-                <Annotation Term="Common.Label" String="ID"/>
+            <Annotations Target="Service.Directories/ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
             <Annotations Target="Service.Directories/parent">
                 <Annotation Term="Common.Label" String="Parent ID"/>
             </Annotations>
-            <Annotations Target="Service.Directories/parent_Id">
+            <Annotations Target="Service.Directories/parent_ID">
                 <Annotation Term="Common.Label" String="Parent ID"/>
             </Annotations>
             <Annotations Target="Service.Directories/sequence">
@@ -117,6 +152,50 @@
                 <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
             <Annotations Target="Service.Directories/DraftAdministrativeData">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Service.EntityContainer/Functions">
+                <Annotation Term="Common.DraftNode">
+                    <Record Type="Common.DraftNodeType">
+                        <PropertyValue Property="PreparationAction" String="Service.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="Service.Functions/ID">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Service.Functions/type">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Allocation"/>
+                            <PropertyValue Property="Value" String="AL"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="Derivation"/>
+                            <PropertyValue Property="Value" String="DE"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="ModelTable"/>
+                            <PropertyValue Property="Value" String="MT"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="Common.Label" String="Type"/>
+            </Annotations>
+            <Annotations Target="Service.Functions/description">
+                <Annotation Term="Common.Label" String="Description"/>
+            </Annotations>
+            <Annotations Target="Service.Functions/IsActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Service.Functions/HasActiveEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Service.Functions/HasDraftEntity">
+                <Annotation Term="UI.Hidden" Bool="true"/>
+            </Annotations>
+            <Annotations Target="Service.Functions/DraftAdministrativeData">
                 <Annotation Term="UI.Hidden" Bool="true"/>
             </Annotations>
             <Annotations Target="Service.DraftAdministrativeData">
