@@ -1,4 +1,5 @@
 @odata.draft.enabled
+@cds.odata.valuelist
 entity Directories {
     key ID          : UUID                           @odata.Type : 'Edm.String'  @UI.Hidden;
         parent      : Association to one Directories @title      : 'Parent ID';
@@ -18,13 +19,14 @@ type DirectoryType @(assert.range) : String @title : 'Type' enum {
 
 
 entity Functions {
-    key ID          : UUID   @odata.Type : 'Edm.String'  @UI.Hidden;
-        type        : FileType;
-        description : String @title      : 'Description';
-        directory   : Association to one Directories;
-        allocation  : Association to one Allocations;
-        derivation  : Association to one Derivations;
-        modelTable  : Association to one ModelTables;
+    key ID            : UUID        @odata.Type : 'Edm.String'  @UI.Hidden;
+        type          : FileType;
+        description   : String      @title      : 'Description';
+        documentation : LargeString @title      : 'Documentation';
+        directory     : Association to one Directories;
+        allocation    : Association to one Allocations;
+        derivation    : Association to one Derivations;
+        modelTable    : Association to one ModelTables;
 }
 
 type FileType @(assert.range) : String @title : 'Type' enum {

@@ -24,6 +24,10 @@ annotate service.Functions with @(
                 $Type : 'UI.DataField',
                 Value : description,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : documentation,
+            },
         ],
     },
     UI.Facets : [
@@ -35,3 +39,17 @@ annotate service.Functions with @(
         },
     ]
 );
+annotate service.Functions with @(
+    UI.SelectionFields : [
+        directory_ID,
+    ]
+);
+annotate service.Functions with {
+    directory @Common.Label : 'directory_ID'
+};
+annotate service.Functions with {
+    directory @Common.Text : directory.description
+};
+annotate service.Functions with {
+    documentation @UI.MultiLineText : true
+};
