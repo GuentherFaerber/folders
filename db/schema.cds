@@ -23,6 +23,7 @@ entity Functions {
         type          : FileType;
         description   : String      @title      : 'Description';
         documentation : LargeString @title      : 'Documentation';
+        sequence      : Integer;
         directory     : Association to one Directories;
         allocation    : Association to one Allocations;
         derivation    : Association to one Derivations;
