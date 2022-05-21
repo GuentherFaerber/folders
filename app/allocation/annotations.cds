@@ -1,9 +1,9 @@
-using FunctionService as service from '../../srv/service';
+using FunctionService as service from '../../srv/functions-service';
 
 annotate service.Allocations with @(
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
-        Data : [
+        Data  : [
             {
                 $Type : 'UI.DataField',
                 Value : type,
@@ -18,29 +18,29 @@ annotate service.Allocations with @(
             },
         ],
     },
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'General Information',
-            Target : '@UI.FieldGroup#GeneratedGroup1',
-        },
-    ]
+    UI.Facets                      : [{
+        $Type  : 'UI.ReferenceFacet',
+        ID     : 'GeneratedFacet1',
+        Label  : 'General Information',
+        Target : '@UI.FieldGroup#GeneratedGroup1',
+    }, ]
 );
+
 annotate service.Allocations with {
-    function @(Common.ValueList : {
-            $Type : 'Common.ValueListType',
+    function @(
+        Common.ValueList                : {
+            $Type          : 'Common.ValueListType',
             CollectionPath : 'Functions',
-            Parameters : [
-                {
-                    $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : function_ID,
-                    ValueListProperty : 'ID',
-                },
-            ],
+            Parameters     : [{
+                $Type             : 'Common.ValueListParameterInOut',
+                LocalDataProperty : function_ID,
+                ValueListProperty : 'ID',
+            }, ],
         },
         Common.ValueListWithFixedValues : true
-)};
+    )
+};
+
 annotate service.Functions with {
     ID @Common.Text : description
 };
