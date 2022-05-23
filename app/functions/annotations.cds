@@ -1,21 +1,20 @@
-using FunctionService as service from '../../srv/service';
+using FunctionService as service from '../../srv/functions-service';
 
-annotate service.Functions with @(
-    UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Value : type,
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : description,
-        },
-    ]
-);
+annotate service.Functions with @(UI.LineItem : [
+    {
+        $Type : 'UI.DataField',
+        Value : type,
+    },
+    {
+        $Type : 'UI.DataField',
+        Value : description,
+    },
+]);
+
 annotate service.Functions with @(
     UI.FieldGroup #GeneratedGroup1 : {
         $Type : 'UI.FieldGroupType',
-        Data : [
+        Data  : [
             {
                 $Type : 'UI.DataField',
                 Value : type,
@@ -30,26 +29,24 @@ annotate service.Functions with @(
             },
         ],
     },
-    UI.Facets : [
-        {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'General Information',
-            Target : '@UI.FieldGroup#GeneratedGroup1',
-        },
-    ]
+    UI.Facets                      : [{
+        $Type  : 'UI.ReferenceFacet',
+        ID     : 'GeneratedFacet1',
+        Label  : 'General Information',
+        Target : '@UI.FieldGroup#GeneratedGroup1',
+    }, ]
 );
-annotate service.Functions with @(
-    UI.SelectionFields : [
-        directory_ID,
-    ]
-);
+
+annotate service.Functions with @(UI.SelectionFields : [directory_ID, ]);
+
 annotate service.Functions with {
     directory @Common.Label : 'directory_ID'
 };
+
 annotate service.Functions with {
     directory @Common.Text : directory.description
 };
+
 annotate service.Functions with {
     documentation @UI.MultiLineText : true
 };

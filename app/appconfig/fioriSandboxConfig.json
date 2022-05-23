@@ -1,0 +1,62 @@
+{
+  "services": {
+    "LaunchPage": {
+      "adapter": {
+        "config": {
+          "catalogs": [],
+          "groups": [
+            {
+              "id": "Apps",
+              "title": "Apps",
+              "isPreset": true,
+              "isVisible": true,
+              "isGroupLocked": false,
+              "tiles": [
+                {
+                  "id": "Directories",
+                  "tileType": "sap.ushell.ui.tile.StaticTile",
+                  "properties": {
+                    "title": "Directories",
+                    "info": "Fiori Elements",
+                    "targetURL": "#Directories-manage"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "NavTargetResolution": {
+      "config": {
+        "enableClientSideTargetResolution": true
+      }
+    },
+    "ClientSideTargetResolution": {
+      "adapter": {
+        "config": {
+          "inbounds": {
+            "Admin": {
+              "semanticObject": "Directories",
+              "action": "manage",
+              "title": "Directories",
+              "signature": {
+                "parameters": {
+                  "ID": {
+                    "renameTo": "parent_ID"
+                  }
+                },
+                "additionalParameters": "ignored"
+              },
+              "resolutionResult": {
+                "applicationType": "SAPUI5",
+                "additionalInformation": "SAPUI5.Component=directories",
+                "url": "./directories/webapp"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

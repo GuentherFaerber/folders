@@ -1,17 +1,9 @@
 using {
-    Directories as directories,
     Allocations as allocations,
     Derivations as derivations,
     ModelTables as modelTables,
     Functions   as functions,
 } from '../db/schema';
-
-@path : 'service/directories'
-service Service {
-    @odata.draft.enabled
-    entity Directories as projection on directories order by
-        sequence asc;
-}
 
 @path : 'service/functions'
 service FunctionService {

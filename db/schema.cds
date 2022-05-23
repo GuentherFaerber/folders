@@ -1,7 +1,15 @@
 @odata.draft.enabled
 @cds.odata.valuelist
 entity Directories {
+        @Common :                                                  {
+            Text            : description,
+            TextArrangement : #TextOnly,
+        }
     key ID          : UUID                           @odata.Type : 'Edm.String'  @UI.Hidden;
+        @Common :                                                  {
+            Text            : description,
+            TextArrangement : #TextOnly,
+        }
         parent      : Association to one Directories @title      : 'Parent ID';
         sequence    : Integer                        @title      : 'Sequence';
         type        : DirectoryType;
@@ -29,6 +37,9 @@ entity Functions {
         derivation    : Association to one Derivations;
         modelTable    : Association to one ModelTables;
 }
+
+annotate Functions with @UI.Identification : [{Value : description}, ];
+annotate Functions with @cds.odata.valuelist;
 
 type FileType @(assert.range) : String @title : 'Type' enum {
     Allocation = 'AL';
