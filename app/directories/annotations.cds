@@ -15,7 +15,7 @@ annotate service.Directories with @(
         {
             $Type          : 'UI.DataFieldWithIntentBasedNavigation',
             SemanticObject : 'Directories',
-            Action         : 'display',
+            Action         : 'manage',
             Value          : description,
             Label          : 'Open Directory'
         },

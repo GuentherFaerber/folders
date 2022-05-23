@@ -18,7 +18,7 @@
                   "properties": {
                     "title": "Directories",
                     "info": "Fiori Elements",
-                    "targetURL": "#Directories-display"
+                    "targetURL": "#Directories-manage"
                   }
                 }
               ]
@@ -38,7 +38,7 @@
           "inbounds": {
             "Admin": {
               "semanticObject": "Directories",
-              "action": "display",
+              "action": "manage",
               "title": "Directories",
               "signature": {
                 "parameters": {

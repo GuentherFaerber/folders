@@ -19,7 +19,9 @@
         "uri": "/service/directories/",
         "type": "OData",
         "settings": {
-          "annotations": ["annotation"],
+          "annotations": [
+            "annotation"
+          ],
           "localUri": "localService/metadata.xml",
           "odataVersion": "4.0"
         }
@@ -43,7 +45,7 @@
             },
             "additionalParameters": "ignored"
           },
-          "semanticObject": "directories",
+          "semanticObject": "Directories",
           "action": "manage",
           "title": "{{flpTitle}}",
           "subTitle": "{{flpSubtitle}}",
