@@ -136,7 +136,19 @@
                                     }
                                 }
                             },
-                            "initialLoad": "Enabled"
+                            "initialLoad": "Enabled",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "actions": {
+                                        "DataFieldForAction::FunctionService.deactivate": {
+                                            "enableOnSelect": "multi"
+                                        },
+                                        "DataFieldForAction::FunctionService.activate": {
+                                            "enableOnSelect": "multi"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 },

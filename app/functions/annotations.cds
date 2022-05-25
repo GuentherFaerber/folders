@@ -10,6 +10,16 @@ annotate service.Functions with @(
             $Type : 'UI.DataField',
             Value : description,
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'FunctionService.activate',
+            Label : 'Activate',
+        },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'FunctionService.deactivate',
+            Label : 'Deactivate',
+        },
     ]
 );
 annotate service.Functions with @(

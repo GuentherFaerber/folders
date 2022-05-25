@@ -16,7 +16,12 @@ service Service {
 @path : 'service/functions'
 service FunctionService {
     @odata.draft.enabled
-    entity Functions   as projection on functions;
+    entity Functions   as projection on functions actions {
+        @title : 'Activate'
+        action activate();
+        @title : 'Deactivate'
+        action deactivate();
+    };
 
     @odata.draft.enabled
     entity Allocations as projection on allocations;
