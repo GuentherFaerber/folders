@@ -71,3 +71,13 @@ type ModelTableType @(assert.range) : String @title : 'Type' enum {
     Internal = 'IN';
     External = 'EX';
 }
+
+@cds.odata.valuelist
+entity DirectoriesVH as select 
+        key ID as id,    
+        parent,      
+        sequence,    
+        type,      
+        description 
+        from Directories
+;
