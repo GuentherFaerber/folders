@@ -63,3 +63,35 @@ annotate service.Functions with {
 annotate service.Functions with {
     documentation @UI.MultiLineText : true
 };
+
+annotate service.DirectoriesVH with {
+    id @UI.Hidden : false
+};
+
+annotate service.Functions with {
+    directory @(
+        Common.FilterDefaultValue : {
+            $value : 'FILE1'
+        },
+        )
+};
+
+annotate service.Functions with {
+    directory @(
+        Common.ValueList                : {
+            $Type          : 'Common.ValueListType',
+            CollectionPath : 'DirectoriesVH',
+            Parameters     : [
+                {
+                    $Type             : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : directory_ID,
+                    ValueListProperty : 'id',
+                },
+                {
+                    $Type             : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'description',
+                },
+            ],
+        },
+    )
+};
