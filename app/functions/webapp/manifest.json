@@ -159,7 +159,22 @@
                     "options": {
                         "settings": {
                             "editableHeaderContent": false,
-                            "entitySet": "Functions"
+                            "entitySet": "Functions",
+                            "content": {
+                                "body": {
+                                    "sections": {
+                                        "myCustomSection": {
+                                            "template": "functions.custom.fragment.RTEFragment",
+                                            "title": "RTE",
+                                            "position": {
+                                                
+                                                "placement": "Before",
+                                                "anchor": "GeneratedFacet1"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }

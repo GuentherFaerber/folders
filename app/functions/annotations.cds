@@ -11,6 +11,10 @@ annotate service.Functions with @(
             Value : description,
         },
         {
+                $Type : 'UI.DataField',
+                Value : documentation,
+            },
+        {
             $Type : 'UI.DataFieldForAction',
             Action : 'FunctionService.activate',
             Label : 'Activate',
@@ -34,10 +38,7 @@ annotate service.Functions with @(
                 $Type : 'UI.DataField',
                 Value : description,
             },
-            {
-                $Type : 'UI.DataField',
-                Value : documentation,
-            },
+            
         ],
     },
     UI.Facets : [
