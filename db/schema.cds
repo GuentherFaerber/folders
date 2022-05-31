@@ -19,15 +19,16 @@ type DirectoryType @(assert.range) : String @title : 'Type' enum {
 
 
 entity Functions {
-    key ID            : UUID        @odata.Type : 'Edm.String'  @UI.Hidden;
-        type          : FileType;
-        description   : String      @title      : 'Description';
-        documentation : LargeString @title      : 'Documentation';
-        sequence      : Integer;
-        directory     : Association to one Directories;
-        allocation    : Association to one Allocations;
-        derivation    : Association to one Derivations;
-        modelTable    : Association to one ModelTables;
+    key ID                : UUID        @odata.Type : 'Edm.String'  @UI.Hidden;
+        type              : FileType;
+        description       : String      @title      : 'Description';
+        documentation     : LargeString @title      : 'Documentation';
+        sequence          : Integer;
+        directory         : Association to one Directories;
+        allocation        : Association to one Allocations;
+        derivation        : Association to one Derivations;
+        modelTable        : Association to one ModelTables;
+        virtual hideField : Boolean;
 }
 
 type FileType @(assert.range) : String @title : 'Type' enum {
