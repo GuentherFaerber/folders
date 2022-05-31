@@ -1,5 +1,9 @@
 using FunctionService as service from '../../srv/service';
 
+annotate service.Functions with {
+    documentation @UI.Hidden : hideField
+};
+
 annotate service.Functions with @(
     UI.LineItem : [
         {
