@@ -16,7 +16,17 @@ service Service {
 @path : 'service/functions'
 service FunctionService {
     @odata.draft.enabled
-    entity Functions   as projection on functions actions {
+     entity Functions  as select from functions {
+        key ID,
+        type,  
+        description, 
+        documentation,
+        sequence,
+        allocation,
+        derivation, 
+        modelTable,
+        (case when type = 'AL' then false else true end) as hideField: Boolean
+    } actions {
         @title : 'Activate'
         action activate();
         @title : 'Deactivate'
